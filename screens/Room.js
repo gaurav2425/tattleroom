@@ -7,6 +7,7 @@ import {
   Animated,
   Text,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import CustomSVG from "../assets/svgs/CustomSVG";
 import ExitSVG from "../assets/svgs/ExitSVG";
@@ -15,7 +16,8 @@ import HeartIcon from "../assets/svgs/HeartIcon";
 import ChatIcon from "../assets/svgs/MessageIcon";
 import HeartRed from "../assets/svgs/HeartRed";
 import { StatusBar } from "expo-status-bar";
-
+import LottieView from "lottie-react-native";
+import { Feather } from "@expo/vector-icons";
 const Room = () => {
   const scrollViewRef = useRef(null);
   const [contentOffset, setContentOffset] = useState(0);
@@ -151,20 +153,23 @@ const Room = () => {
         <View>
           <View style={styles.header_bottomBox}>
             <View style={styles.header_left}>
-              <CustomSVG />
+              {/* <CustomSVG /> */}
 
+              <TouchableOpacity style={styles.icon}>
+                <Feather name="arrow-left" size={28} color="black" />
+              </TouchableOpacity>
               <Text style={styles.heading_txt}>The Love Brew</Text>
             </View>
-            <View style={styles.header_right}>
+            {/* <View style={styles.header_right}>
               <Text style={styles.header_right_txt}>Exit</Text>
               <ExitSVG></ExitSVG>
-            </View>
+            </View> */}
           </View>
-          <View style={styles.scroll_header}>
+          {/* <View style={styles.scroll_header}>
             <Text style={styles.scroll_header_txt}>People on table</Text>
-          </View>
+          </View> */}
           <View>
-            <ScrollView
+            {/* <ScrollView
               ref={scrollViewRef}
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -229,7 +234,15 @@ const Room = () => {
                   </View>
                 );
               })}
-            </ScrollView>
+            </ScrollView> */}
+            <View
+              style={{
+                width: "95%",
+                alignSelf: "center",
+              }}
+            >
+              <CafeMembers></CafeMembers>
+            </View>
             <View
               style={{
                 width: "95%",
@@ -254,9 +267,15 @@ const Room = () => {
           </View>
           <View style={styles.like_container_main}>
             <View style={styles.like_container}>
-              <HeartIcon></HeartIcon>
+              {/* <HeartIcon></HeartIcon> */}
+              <LottieView
+                source={require("../assets/matching.json")} // Ensure the correct path
+                autoPlay
+                loop
+                style={styles.animation}
+              />
             </View>
-            <Text style={styles.send_like_txt}>Send like</Text>
+            <Text style={styles.send_like_txt}>Find match</Text>
           </View>
         </View>
       </View>
@@ -285,6 +304,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 600,
     color: "#723968",
+    fontFamily: "DMSansSemiBold",
   },
   box: {
     height: 130,
@@ -298,12 +318,14 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
+    fontFamily: "DMSansSemiBold",
   },
   selectedText: {
     color: "#fff",
     fontSize: 16,
     marginTop: 8,
     fontWeight: "500",
+    fontFamily: "DMSansSemiBold",
   },
   topBox: {
     height: "8%",
@@ -335,6 +357,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 20,
     marginLeft: 10,
+    fontFamily: "DMSansSemiBold",
   },
   header_right: {
     backgroundColor: "#F6F4DF",
@@ -360,6 +383,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#F01717",
     marginRight: 5,
+    fontFamily: "DMSansSemiBold",
   },
   like_container: {
     width: 100,
@@ -392,11 +416,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
     marginTop: 5,
+    fontFamily: "DMSansSemiBold",
   },
   bottom_bar_txt: {
     fontSize: 16,
     fontWeight: "600",
     marginLeft: 5,
+    fontFamily: "DMSansSemiBold",
+  },
+  animation: {
+    width: 40,
+    height: 40,
   },
 });
 

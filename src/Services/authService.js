@@ -8,7 +8,7 @@ export const signup = async (name) => {
 
     await axios
       .post(
-        "http://172.16.0.105:5500/api/users/register",
+        "http://192.168.1.7:5500/api/users/register",
         {
           "Content-Type": "application/json",
         },

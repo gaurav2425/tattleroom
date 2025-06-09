@@ -13,9 +13,14 @@ const CircularButton = ({
   navigationScreenName,
   navigation,
   onpress,
+  disabled,
 }) => {
   return (
-    <TouchableOpacity style={styles.nxt_container} onPress={onpress}>
+    <TouchableOpacity
+      style={styles.nxt_container}
+      onPress={onpress}
+      disabled={true}
+    >
       <TouchableOpacity style={styles.right_arrow} onPress={onpress}>
         <Svg
           width="24"

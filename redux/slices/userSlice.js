@@ -8,12 +8,20 @@ const initialState = {
   bio: "",
   // photos: [],
   interests: [],
+  stage: "onboarding",
+  token: "",
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setToken: (state, action) => {
+      state.token = action.payload;
+    },
+    setStage: (state, action) => {
+      state.stage = action.payload;
+    },
     setPhone: (state, action) => {
       state.phone = action.payload;
     },
@@ -46,5 +54,7 @@ export const {
   setBio: setBioData,
   setInterests,
   setPhotosData: setPhotos,
+  setStage,
+  setToken,
 } = userSlice.actions;
 export default userSlice.reducer;

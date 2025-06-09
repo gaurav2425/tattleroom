@@ -11,15 +11,19 @@ import { StatusBar } from "expo-status-bar";
 import Button from "../src/components/Buttons/Button.js";
 import CircularButton from "../src/components/Buttons/CircularButton.js";
 import Triangle from "../assets/svgs/Triangle.js";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const { width: screenWidth } = Dimensions.get("window");
-import { MMKV, Mode } from "react-native-mmkv";
-import { useSelector } from "react-redux";
+// import { MMKV, Mode } from "react-native-mmkv";
+import { useDispatch, useSelector } from "react-redux";
 import api from "../src/Services/api.js";
+import { setToken } from "../redux/slices/userSlice.js";
 
 const TermsConditions = ({ navigation }) => {
   const userDataRedux = useSelector((state) => state.user);
-  const storage = new MMKV();
+  // const storage = new MMKV();
+  const dispatch = useDispatch();
+  console.log("userDataRedux", userDataRedux);
+
   const handleSignup = async () => {
     let userData = {
       countryCode: "+1",
@@ -36,14 +40,18 @@ const TermsConditions = ({ navigation }) => {
       ],
     };
 
+    console.log("userData", userData);
+
     try {
       const response = await api.post(
         "/users/register",
         userData // Pass userData as the body of the request
       );
-      storage.set("token", response.data.token);
+
+      // storage.set("token", response.data.token);
+      await AsyncStorage.setItem("token", response.data.token);
+      dispatch(setToken(response.data.token));
       console.log(">>", response.data); // Handle successful response
-      navigation.navigate("Home");
     } catch (error) {
       console.log("Error:", error.response?.data || error.message); // Handle error
       // setMessage(error.response?.data || error.message); // Optional: Set error message
@@ -54,7 +62,7 @@ const TermsConditions = ({ navigation }) => {
     <View style={styles.main_container}>
       <StatusBar style="auto" />
       <ImageBackground
-        source={require("../assets/photos_bg3.png")}
+        source={require("../assets/onboarding_banner.png")}
         style={styles.top_container}
         resizeMode="cover"
       >

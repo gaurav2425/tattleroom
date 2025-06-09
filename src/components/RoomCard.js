@@ -1,52 +1,27 @@
 import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
+import Feather from "@expo/vector-icons/Feather";
 
-const RoomCard = ({ room }) => {
-  console.log("room", room?.imgSrc);
+const RoomCard = ({ cafe }) => {
+  console.log("room", cafe?.imgSrc);
 
   return (
     <View style={styles.roomcard_container}>
-      <View style={styles.top_container}>
-        <ImageBackground
-          source={room?.imgSrc}
-          style={{
-            height: "100%",
-          }}
-        >
-          <View style={styles.people_container}>
-            <Text style={styles.people_txt}>120</Text>
-            <Image
-              source={require("../../assets/people.png")}
-              style={{
-                width: 10,
-                height: 10,
-              }}
-            ></Image>
-          </View>
-        </ImageBackground>
+      <View style={styles.left_container}>
+        <View style={styles.cafe_header_container}>
+          <View style={styles.cafe_profile}></View>
+          <Text style={styles.cafe_name}>{cafe?.cafename}</Text>
+        </View>
+        <View>
+          <Text style={styles.cafe_txt}>{cafe?.cafetitle}</Text>
+        </View>
+        <View style={styles.cafe_status_container}>
+          <Feather name="radio" size={24} color="red" />
+          <Text style={styles.status_txt}>Matching Now</Text>
+        </View>
       </View>
-      <View style={styles.bottom_container}>
-        <View
-          style={{
-            width: "20%",
-          }}
-        >
-          <Image
-            source={require("../../assets/peoplegroup.png")}
-            style={{
-              width: 30,
-              height: 30,
-            }}
-          ></Image>
-        </View>
-        <View
-          style={{
-            width: "80%",
-          }}
-        >
-          <Text style={styles.room_txt}>{room?.title}</Text>
-          <Text style={styles.live_txt}>Live</Text>
-        </View>
+      <View style={styles.right_container}>
+        <Image source={require("../../assets/group_people.png")}></Image>
       </View>
     </View>
   );
@@ -55,18 +30,27 @@ const RoomCard = ({ room }) => {
 export default RoomCard;
 
 const styles = StyleSheet.create({
+  left_container: {
+    width: "50%",
+    justifyContent: "space-between",
+    height: "100%",
+  },
   roomcard_container: {
-    width: 200,
-    height: 220,
+    width: "100%",
+    height: 180,
     backgroundColor: "#fff",
-    borderRadius: 15,
+    borderRadius: 35,
     shadowColor: "rgba(0, 0, 0, 0.4)",
     shadowOpacity: 0.5,
-    shadowRadius: 5,
+    shadowRadius: 2,
     shadowOffset: {
-      height: 2,
-      width: 2,
+      height: 1,
+      width: 1,
     },
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 20,
   },
   top_container: {
     height: "75%",
@@ -105,5 +89,34 @@ const styles = StyleSheet.create({
   people_txt: {
     fontWeight: "600",
     fontSize: 12,
+  },
+  cafe_txt: {
+    fontFamily: "FrauncesSemiBold",
+    fontSize: 35,
+    fontWeight: "600",
+  },
+  cafe_name: {
+    fontFamily: "FrauncesSemiBold",
+    fontWeight: "600",
+    marginLeft: 5,
+  },
+  status_txt: {
+    fontFamily: "FrauncesSemiBold",
+    fontWeight: "600",
+    marginLeft: 5,
+  },
+  cafe_profile: {
+    width: 20,
+    height: 20,
+    borderRadius: 8,
+    backgroundColor: "grey",
+  },
+  cafe_header_container: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  cafe_status_container: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

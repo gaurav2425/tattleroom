@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Image } from "react-native";
 
-const CafeMembers = () => {
+const PeopleInCafe = ({ title }) => {
   const peopleImages = [
     {
       imageUrl: require("../../assets/people/people11.jpg"),
@@ -26,7 +26,7 @@ const CafeMembers = () => {
 
   return (
     <View style={styles.cafe_container}>
-      <Text style={styles.heading}>Cafe Members</Text>
+      <Text style={styles.heading}>{title}</Text>
       <View style={styles.cafe_people_container}>
         {peopleImages?.map((people, index) => {
           return (
@@ -54,25 +54,25 @@ const CafeMembers = () => {
   );
 };
 
-export default CafeMembers;
+export default PeopleInCafe;
 
 const styles = StyleSheet.create({
   heading: {
     color: "#723968",
     fontSize: 18,
     fontWeight: "600",
-    marginBottom: 10,
+    // marginBottom: 10,
     fontFamily: "DMSansSemiBold",
   },
   img_container: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     borderRadius: 30,
     margin: 5,
   },
   img: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     borderRadius: 30,
   },
   cafe_people_container: {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   cafe_container: {
-    paddingVertical: 20,
+    paddingVertical: 10,
   },
   people_count: {
     color: "#fff",

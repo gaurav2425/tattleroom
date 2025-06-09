@@ -45,7 +45,7 @@ const Otp = ({ navigation }) => {
     <View style={styles.main_container}>
       <StatusBar style="auto" />
       <ImageBackground
-        source={require("../assets/otp_bg.png")}
+        source={require("../assets/onboarding_banner.png")}
         style={styles.top_container}
         resizeMode="cover"
       >
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "DMSansSemiBold",
     marginRight: 5,
-    borderRadius: 8,
+    // borderRadius: 8,
   },
   triangle_container: {
     flexDirection: "row",

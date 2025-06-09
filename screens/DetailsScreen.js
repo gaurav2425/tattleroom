@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import io from "socket.io-client";
 
-const socket = io("http://172.16.0.126:3000");
+const socket = io("http://192.168.1.7:3000");
 
 export default function DetailsScreen({ navigation, route }) {
   const [username, setUsername] = useState("");

@@ -1,12 +1,48 @@
 import React from "react";
-import { View, StyleSheet, Image, Text, Platform } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  Platform,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
+import Triangle from "../../assets/svgs/Triangle";
+import TriangleOriginal from "./TriangleOriginal";
 
-const BottomTab = () => {
+const BottomTab = ({ navigation }) => {
+  const { width: screenWidth } = Dimensions.get("window");
   return (
-    <View style={styles.container}>
-      <View style={styles.tab_bottom}>
-        {/* Profile Tab */}
-        <View style={styles.tab_item}>
+    <View style={styles.tab_bottom}>
+      {/* Profile Tab */}
+      <View
+        style={{
+          flexDirection: "row",
+        }}
+      >
+        {Array.from({ length: Math.ceil(screenWidth / 20) }).map((_, index) => (
+          <TriangleOriginal key={index} />
+        ))}
+      </View>
+
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          width: "85%",
+          height: "100%",
+          alignSelf: "center",
+          // alignItems: "center",
+          marginTop: 18,
+        }}
+      >
+        <TouchableOpacity
+          style={styles.tab_item}
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+        >
           <View style={styles.icon_container}>
             <Image
               source={require("../../assets/profile.png")}
@@ -14,7 +50,7 @@ const BottomTab = () => {
             />
           </View>
           <Text style={styles.txt_messages}>PROFILE</Text>
-        </View>
+        </TouchableOpacity>
 
         {/* Home Tab with Glow */}
         <View style={[styles.tab_item, styles.active_tab]}>
@@ -28,7 +64,12 @@ const BottomTab = () => {
         </View>
 
         {/* Messages Tab */}
-        <View style={styles.tab_item}>
+        <TouchableOpacity
+          style={styles.tab_item}
+          onPress={() => {
+            navigation.navigate("Messages");
+          }}
+        >
           <View style={styles.icon_container}>
             <Image
               source={require("../../assets/messaging.png")}
@@ -36,34 +77,28 @@ const BottomTab = () => {
             />
           </View>
           <Text style={styles.txt_messages}>MESSAGES</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "blue",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-  },
   tab_bottom: {
     backgroundColor: "#61204E",
     width: "100%",
-    height: 130,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    flexDirection: "column",
+    justifyContent: "flex-start",
     alignItems: "center",
-    paddingBottom: 10,
+    height: 140,
   },
   tab_item: {
     flexDirection: "column",
     alignItems: "center",
     height: 80,
     justifyContent: "flex-end",
+    width: "33.333%",
+    // backgroundColor: "red",
   },
   icon_container: {
     padding: 10,
@@ -96,6 +131,11 @@ const styles = StyleSheet.create({
   active_icon_image: {
     width: 28,
     height: 28,
+  },
+  triangle_container: {
+    flexDirection: "row",
+    borderWidth: 1,
+    backgroundColor: "red",
   },
 });
 

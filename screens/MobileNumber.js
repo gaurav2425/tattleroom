@@ -17,6 +17,7 @@ import Button from "../src/components/Buttons/Button.js";
 const { width: screenWidth } = Dimensions.get("window");
 import { setPhone } from "../redux/slices/userSlice.js";
 import { useDispatch, useSelector } from "react-redux";
+import CircularButton from "../src/components/Buttons/CircularButton.js";
 
 const MobileNumber = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const MobileNumber = ({ navigation }) => {
     <View style={styles.main_container}>
       <StatusBar style="auto" />
       <ImageBackground
-        source={require("../assets/mobile_banner.png")}
+        source={require("../assets/onboarding_banner.png")}
         style={styles.top_container}
         resizeMode="cover"
       >
@@ -63,10 +64,13 @@ const MobileNumber = ({ navigation }) => {
 
       <View style={styles.bottom_container}>
         <View>
+          {/* <View style={styles.mobile_number_txt_container}>
+            <Text style={styles.mobile_number_txt}>Dating/ Banking</Text>
+          </View> */}
           <View style={styles.input_container}>
             <Text style={styles.countrycode_txt}>+91</Text>
             <TextInput
-              placeholder="MOBILE NUMBER"
+              // placeholder="MOBILE NUMBER"
               maxLength={10}
               keyboardType="number-pad"
               returnKeyType="done" // Adds a "Done" button (tick on some keyboards)
@@ -74,7 +78,7 @@ const MobileNumber = ({ navigation }) => {
                 height: 50,
                 backgroundColor: "#fff",
                 color: "#000",
-                fontSize: 18,
+                fontSize: 25,
                 fontFamily: "DMSansSemiBold",
                 width: "100%",
               }}
@@ -130,7 +134,7 @@ const MobileNumber = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.bottom_button}>
-          <Button
+          {/* <Button
             onPress={() => {
               dispatch(setPhone(input));
               navigation.navigate(`Otp`);
@@ -138,7 +142,18 @@ const MobileNumber = ({ navigation }) => {
             title="Next"
             navigationScreenName="Otp"
             navigation={navigation}
-          ></Button>
+          ></Button> */}
+
+          <CircularButton
+            disabled={true}
+            onpress={() => {
+              dispatch(setPhone(input));
+              navigation.navigate(`Otp`);
+            }}
+            title="Next"
+            navigationScreenName="Dob"
+            navigation={navigation}
+          ></CircularButton>
           {/* <NextLoaderButton></NextLoaderButton> */}
         </View>
       </View>
@@ -158,6 +173,13 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
   },
+  mobile_number_txt_container: {
+    marginBottom: 10,
+  },
+  mobile_number_txt: {
+    fontFamily: "DMSansBlack",
+    fontSize: 20,
+  },
   input_container: {
     flexDirection: "row",
     alignItems: "center",
@@ -165,7 +187,7 @@ const styles = StyleSheet.create({
     borderColor: "#ADABAB",
     borderWidth: 1,
     overflow: "hidden",
-    borderRadius: 8,
+    // borderRadius: 8,
   },
   bottom_container: {
     flex: 0.7,
@@ -196,12 +218,16 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   countrycode_txt: {
-    fontSize: 18,
-    fontFamily: "DMSansBold",
-    paddingHorizontal: 10,
+    fontSize: 25,
+    fontFamily: "DMSansSemiBold",
+    paddingHorizontal: 12,
   },
   bottom_button: {
     marginBottom: 20,
     flexDirection: "row",
+    width: "100%",
+    // backgroundColor: "red",
+    display: "flex",
+    justifyContent: "flex-end",
   },
 });

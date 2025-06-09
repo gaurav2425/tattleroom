@@ -59,7 +59,7 @@ const Dob = ({ navigation }) => {
     <View style={styles.main_container}>
       <StatusBar style="auto" />
       <ImageBackground
-        source={require("../assets/mobile_banner.png")}
+        source={require("../assets/onboarding_banner.png")}
         style={styles.top_container}
         resizeMode="cover"
       >

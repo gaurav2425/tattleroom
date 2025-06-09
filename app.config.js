@@ -8,5 +8,8 @@ export default {
       resizeMode: "contain", // or 'cover'
       backgroundColor: "#ffffff",
     },
+    android: {
+      package: "com.anonymous.tattleroom",
+    },
   },
 };
